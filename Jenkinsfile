@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/my-react-app.git'
+                git 'https://github.com/MujWorks/my-react-app.git'
             }
         }
         stage('Build') {
