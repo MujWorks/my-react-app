@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // SSH to the DigitalOcean CentOS 7 droplet
+                // SSH to the DigitalOcean CentOS 7 droplet 
                 ssh(credentialsId: 'react-key', host: '46.101.84.83') {
                     // Create a directory for the React app
                     sh 'sudo mkdir -p /var/www/my-react-app'
