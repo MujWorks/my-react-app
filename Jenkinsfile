@@ -17,7 +17,7 @@ pipeline {
                 script {
                     // SSH to the DigitalOcean CentOS 7 droplet    
 
-sshagent(credentials: ['react-key']) {
+sshagent(credentials: ['newkey']) {
                     sh """
                         ssh root@46.101.84.83 << EOF
                         # Create a directory for the React app (if it doesn't exist)
