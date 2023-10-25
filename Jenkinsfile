@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh 'npm run build'
                 // You can deploy to a server or cloud platform here
-                // For simplicity, we're not covering deployment in this example
+                // For simplicity, we're not covering deployment in this example.
             }
         }
     }
