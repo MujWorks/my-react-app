@@ -30,7 +30,13 @@ pipeline {
                 // Copy the built project to the Nginx server using SSH        
                 script {
                     sshagent(['MySSHKey']) {
-                        sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
+                        //sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
+
+                        //detailed debugging
+                        sh """
+                        set -x
+                        scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}
+                        """
                     }
                 }
             }
