@@ -6,16 +6,10 @@ pipeline {
                 git 'https://github.com/MujWorks/my-react-app.git'
             }
         }
-        stage('Install nvm') {
-    steps {
-        sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
-    }
-}
+        
 
 stage('Configure nvm and Install Node.js') {
     steps {
-        sh 'export NVM_DIR="$HOME/.nvm"'
-        sh '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"'
         sh 'nvm install 14'  // Install Node.js version 14
         sh 'nvm use 14'     // Use Node.js version 14
     }
