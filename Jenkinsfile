@@ -8,6 +8,8 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'nvm install 14'  // Use a compatible Node.js version
+                sh 'nvm use 14'
                 sh 'npm install'
             }
         }
