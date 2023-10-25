@@ -14,14 +14,16 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // SSH to the DigitalOcean CentOS 7 droplet    
-                ssh credentialsId: 'react-key', host: '46.101.84.83', port: 22 {
-                    // Create a directory for the React app
-                    sh 'sudo mkdir -p /var/www/my-react-app'
-                    // Copy the built React app files to the droplet
-                    scp src='$WORKSPACE/build', dest='/var/www/my-react-app'
-                    // Start the React app
-                    sh 'sudo systemctl restart nginx'
+                script {
+                    // SSH to the DigitalOcean CentOS 7 droplet    
+                    sshCommand remote: [credentialsId: 'react-key', name: '46.101.84.83'], command: '''
+                        # Create a directory for the React app (if it doesn't exist)
+                        sudo mkdir -p /usr/share/nginx/html/my-react-app
+                        # Copy the built React app files to the server root directory
+                        sudo cp -r $WORKSPACE/build/* /usr/share/nginx/html/my-react-app/
+                        # Restart the Nginx web server
+                        sudo systemctl restart nginx
+                    '''
                 }
             }
         }
