@@ -16,14 +16,16 @@ pipeline {
             steps {
                 script {
                     // SSH to the DigitalOcean CentOS 7 droplet    
-                    sshCommand remote: [credentialsId: 'react-key', name: '46.101.84.83'], command: '''
+                    sh """
+                        ssh -i /path/to/your/ssh/key user@46.101.84.83 << EOF
                         # Create a directory for the React app (if it doesn't exist)
                         sudo mkdir -p /usr/share/nginx/html/my-react-app
                         # Copy the built React app files to the server root directory
                         sudo cp -r $WORKSPACE/build/* /usr/share/nginx/html/my-react-app/
                         # Restart the Nginx web server
                         sudo systemctl restart nginx
-                    '''
+                        EOF
+                    """
                 }
             }
         }
