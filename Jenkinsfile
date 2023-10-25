@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // SSH to the DigitalOcean CentOS 7 droplet    
+                    // SSH to the DigitalOcean CentOS 7 droplet     
 
 sshagent(credentials: ['newkey']) {
                     sh """
