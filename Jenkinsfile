@@ -26,20 +26,28 @@ pipeline {
             }
         }
 
+        // stage('Deploy') {
+        //     steps {
+        //         // Copy the built project to the Nginx server using SSH                 
+        //         script {
+        //             sshagent(['MySSHKey']) {
+        //                 //sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
+
+        //                 //detailed debugging
+        //                 sh """
+        //                 set -x
+        //                 scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
+
         stage('Deploy') {
             steps {
-                // Copy the built project to the Nginx server using SSH                 
-                script {
-                    sshagent(['MySSHKey']) {
-                        //sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
-
-                        //detailed debugging
-                        sh """
-                        set -x
-                        scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}
-                        """
-                    }
-                }
+                // Copy the built project to the Nginx server using SSH
+                sh "ssh -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_SERVER} 'mkdir -p ${PROJECT_DIR}'"
+                sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
             }
         }
     }
