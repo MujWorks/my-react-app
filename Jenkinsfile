@@ -3,8 +3,8 @@ pipeline {
     
     environment {
         // Define environment variables here       
-        REMOTE_SERVER = '209.97.134.94'
-        REMOTE_USER = 'root'
+        REMOTE_SERVER = '52.66.9.72'
+        REMOTE_USER = 'ubuntu'
         REMOTE_PORT = '22' // Default SSH port
         //PROJECT_DIR = '/usr/share/nginx/html/my-react-app' // Remote directory where your project should be deployed
         PROJECT_DIR = '/var/www/html/my-react-app' // Remote directory where your project should be deployed
