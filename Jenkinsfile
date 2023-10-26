@@ -46,8 +46,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Copy the built project to the Nginx server using SSH
-                sh "ssh -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_SERVER} 'mkdir -p ${PROJECT_DIR}'"
-                sh "scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
+                sh "ssh -o StrictHostKeyChecking=no -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_SERVER} 'mkdir -p ${PROJECT_DIR}'"
+                sh "scp -o StrictHostKeyChecking=no -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}"
             }
         }
     }
