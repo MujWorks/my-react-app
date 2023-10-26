@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        // Define environment variables here      
+        // Define environment variables here       
         REMOTE_SERVER = '209.97.134.94'
         REMOTE_USER = 'root'
         REMOTE_PORT = '22' // Default SSH port
