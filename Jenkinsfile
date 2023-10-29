@@ -8,7 +8,7 @@ pipeline {
         REMOTE_USER = 'root'
         REMOTE_PORT = '22' // Default SSH port
         //PROJECT_DIR = '/usr/share/nginx/html/my-react-app' // Remote directory where your project should be deployed
-        PROJECT_DIR = '/var/www/html/my-react-app' // Remote directory where your project should be deployed
+        PROJECT_DIR = '/var/www/html' // Remote directory where your project should be deployed
     }
 
     stages {
@@ -38,7 +38,7 @@ pipeline {
                         
                         sh """
                         set -x
-                        ssh -o StrictHostKeyChecking=no -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_SERVER} 'mkdir -p ${PROJECT_DIR}'
+                        ssh -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_SERVER} 'mkdir -p ${PROJECT_DIR}'
                         scp -r -P ${REMOTE_PORT} build/* ${REMOTE_USER}@${REMOTE_SERVER}:${PROJECT_DIR}
                         """
                     }
